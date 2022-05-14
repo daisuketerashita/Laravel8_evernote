@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Http\Requests\UserCreateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -48,8 +49,9 @@ class RegisterController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function register(Request $request)
+    public function register(UserCreateRequest $request)
     {
+
         User::create([
             'name' =>  $request->name,
             'email' => $request->email,
