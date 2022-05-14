@@ -21,9 +21,11 @@ Route::get('/user',[RegisterController::class,'showRegistrationForm'])->name('us
 
 Route::post('/user/register',[RegisterController::class,'register'])->name('user.exec.register');
 
-Route::get('/memo',function(){
-    return view('memo');
-})->name('memo.index');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/memo', function() {
+        return view("memo");
+    })->name('memo.index');
+});
 
 Auth::routes();
 
